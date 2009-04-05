@@ -10,6 +10,10 @@ standard distribution uploaded to CPAN, meets the specifications that are
 slowly being introduced to module uploads, via the use of package makers and
 installers such as ExtUtils::MakeMaker, Module::Build and Module::Install.
 
+Current META.yml Specification, 1.4, was finally approved on 23 June 2008.
+
+http://www.nntp.perl.org/group/perl.module.build/2008/06/msg1360.html
+
 DEPENDENCIES
 
 The distribution requires the following modules:

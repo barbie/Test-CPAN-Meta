@@ -1,5 +1,8 @@
 # Changes log for Test::CPAN::Meta
 
+0.13    current
+	- added version checking to standard 94metatest.t
+
 0.12    27/06/2008
 	- added spec version 1.4
 	- added further check to ensure we have a known spec version
