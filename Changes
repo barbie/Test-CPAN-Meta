@@ -1,5 +1,9 @@
 # Changes log for Test::CPAN::Meta
 
+0.12    27/06/2008
+	- added spec version 1.4
+	- added further check to ensure we have a known spec version
+
 0.11    02/06/2008
 	- added 'git' as an accepted url protocol (Mischa Poslawsky).
 

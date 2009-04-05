@@ -2,7 +2,7 @@
 use strict;
 
 use Test::CPAN::Meta;
-use Test::Builder::Tester tests => 6;
+use Test::Builder::Tester tests => 7;
 
 my $testfile = 't/samples/00-META.yml';
 
@@ -37,3 +37,11 @@ test_out('ok 1 - t/samples/00-META.yml contains valid YAML');
 test_out('ok 2 - my own test');
 meta_spec_ok($testfile,undef,'my own test');
 test_test("$testfile with assumed (1.3) version");
+
+test_out('ok 1 - t/samples/00-META.yml contains valid YAML');
+test_out('not ok 2 - bad spec version');
+test_fail(2);
+test_err('#   ERR: Unknown META.yml specification, cannot validate. [Validation: 0.99]');
+meta_spec_ok($testfile,'0.99','bad spec version');
+test_test("$testfile with bad spec version 0.99");
+
