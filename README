@@ -1,0 +1,83 @@
+Test::CPAN::Meta
+================
+
+DESCRIPTION
+
+Validation of the META.yml file in a CPAN distribution.
+
+This module was written to ensure that a META.yml file, provided with a 
+standard distribution uploaded to CPAN, meets the specifications that are
+slowly being introduced to module uploads, via the use of package makers and
+installers such as ExtUtils::MakeMaker, Module::Build and Module::Install.
+
+DEPENDENCIES
+
+The distribution requires the following modules:
+
+  Parse::CPAN::Meta   >= 0.02
+  Test::Builder       >= 0
+
+For testing purposes, the following modules are required:
+
+  Test::More          >= 0.70
+
+For testing purposes, the following modules are desireable, but not essential:
+
+  Test::Pod           >= 1.00
+  Test::Pod::Coverage >= 0.08
+  Pod::Coverage
+
+INSTALLATION
+
+To install this module type the following:
+
+ perl Makefile.PL
+ make
+ make test
+ make install
+
+For more detailed installation instructions, see INSTALL.
+
+USAGE
+
+Read the pod documentation in the distribution files.
+
+CHANGES
+
+For a complete list of changes, see the Changes file.
+
+SUPPORT
+
+There are no known bugs at the time of this release. However, if you spot a
+bug or are experiencing difficulties that are not explained within the POD
+documentation, please send an email to barbie@cpan.org or submit a bug to the
+RT system (http://rt.cpan.org/Public/Dist/Display.html?Name=Test-CPAN-Meta). 
+However, it would help greatly if you are able to pinpoint problems or even 
+supply a patch. 
+
+Fixes are dependant upon their severity and my availablity. Should a fix not
+be forthcoming, please feel free to (politely) remind me.
+
+DSLIP
+
+  b - Beta testing
+  d - Developer
+  p - Perl-only
+  O - Object oriented
+  p - Standard-Perl: user may choose between GPL and Artistic
+
+AUTHOR
+
+Barbie <barbie@cpan.org>
+for Miss Barbell Productions http://www.missbarbell.co.uk.
+
+COPYRIGHT AND LICENSE
+
+  Copyright (C) 2007,2008 Barbie for Miss Barbell Productions.
+
+  This module is free software; you can redistribute it and/or 
+  modify it under the same terms as Perl itself.
+
+The full text of the licenses can be found in the Artistic file included with
+this distribution, or in perlartistic file available with your Perl 
+installation.

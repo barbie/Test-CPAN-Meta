@@ -1,0 +1,41 @@
+# Changes log for Test::CPAN::Meta
+
+0.07	10/01/2008
+	- removed dependencies on Test::YAML::Valid, YAML and YAML-Syck, in
+	  their place we now use the new Parse::CPAN::Meta module, which has
+	  been proposed for including in the Perl Core.
+	- name change from 'Test::YAML::Meta' to 'Test::CPAN::Meta', to follow
+	  the better naming convention as per Parse::CPAN::Meta.
+	- added AUTOMATED_TESTING checks to packaging tests.
+
+0.06	05/11/2007
+	- fixed RT#29457: distribution_type is not mandatory in spec 1.2 (domm)
+
+0.05	02/11/2007
+	- a curious error report fails validating META.yml the first time, but
+	  is okay the second time. As such I'm removing the 93metavalid.t as 
+	  the test is redundant now.
+
+0.04	15/05/2007
+	- provided better error reporting (spec chain and validating version)
+	- added a new test file, supplied by Jochen Stenzel, which highlights
+	  an error in the way the author line was created.
+	- bumped the Test::More version required, due to a bugfix in 
+	  Test::Builder:Tester.
+	- provided a cleaner way to report undef values as errors
+	- added lots more tests for edge cases
+	- finally sorted the Test::Builder::Tester tests in 04metatester.t
+	- Devel::Cover = 95.6%
+
+0.03    27/02/2007
+	- POD & comment updates
+	- removed 92distribution.t test as it can't detect that YAML::Syck is 
+	  optional
+	- fixed a misunderstanding of mine from the META.yml specification.
+
+0.02    27/02/2007
+	Fixed a bug in detecting module name
+
+0.01    27/02/2007
+        - Initial release.
+	- Devel::Cover = 91.7%
