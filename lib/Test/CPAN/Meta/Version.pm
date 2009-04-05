@@ -4,7 +4,7 @@ use warnings;
 use strict;
 
 use vars qw($VERSION);
-$VERSION = '0.10';
+$VERSION = '0.11';
 
 #----------------------------------------------------------------------------
 
@@ -468,7 +468,7 @@ sub header {
 }
 
 #my $protocol = qr¬(?:http|https|ftp|afs|news|nntp|mid|cid|mailto|wais|prospero|telnet|gopher)¬;
-my $protocol = qr¬(?:ftp|http|https)¬;
+my $protocol = qr¬(?:ftp|http|https|git)¬;
 my $badproto = qr¬(\w+)://¬;
 my $proto    = qr¬$protocol://(?:[\w]+:\w+@)?¬;
 my $atom     = qr¬[a-z\d]¬i;
