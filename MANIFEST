@@ -14,6 +14,7 @@ t/01use.t
 t/02metafiles.t
 t/03metaversion.t
 t/04metatester.t
+t/05metaspec.t
 t/90podtest.t
 t/91podcover.t
 t/94metatest.t

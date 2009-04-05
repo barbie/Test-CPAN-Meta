@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
 use strict;
 
-use Test::More  tests => 84;
+use Test::More  tests => 86;
 use Test::CPAN::Meta::Version;
 
 my $spec = Test::CPAN::Meta::Version->new(spec => '1.3');
@@ -64,10 +64,10 @@ is($spec->boolean('boolean',''),0,      'boolean = (blank)');
 is($spec->boolean('boolean',undef),0,   'boolean = (undef value)');
 is($spec->boolean('boolean'),0,         'boolean = (undef)');
 
-for my $value (qw( perl gpl apache artistic lgpl bsd gpl mit mozilla open_source unrestricted restrictive unknown )) {
+for my $value (qw( perl gpl apache artistic artistic2 artistic-2.0 lgpl bsd gpl mit mozilla open_source unrestricted restrictive unknown )) {
     is($spec->license('license',$value),1,'license test = ' . $value);
 }
-is($spec->license('license','blah'),0);
+is($spec->license('license','blah'),2);
 is($spec->license('license',''),0);
 is($spec->license('license',undef),0);
 

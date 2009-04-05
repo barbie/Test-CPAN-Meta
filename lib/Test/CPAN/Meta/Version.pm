@@ -4,7 +4,7 @@ use warnings;
 use strict;
 
 use vars qw($VERSION);
-$VERSION = '0.07';
+$VERSION = '0.08';
 
 #----------------------------------------------------------------------------
 
@@ -436,7 +436,8 @@ Validates for a boolean value. Currently these values are '1', '0', 'true',
 
 =item * license($self,$key,$value)
 
-Validates that the given value represents an known license type.
+Validates that a value is given for the license. Returns 1 if an known license
+type, or 2 if a value is given but the license type is not a recommended one.
 
 =item * resource($self,$key,$value)
 
@@ -580,25 +581,28 @@ sub boolean {
 }
 
 my %licenses = (
-    perl         => 'http://dev.perl.org/licenses/',
-    gpl          => 'http://www.opensource.org/licenses/gpl-license.php',
-    apache       => 'http://apache.org/licenses/LICENSE-2.0',
-    artistic     => 'http://opensource.org/licenses/artistic-license.php',
-    lgpl         => 'http://opensource.org/licenses/artistic-license.php',
-    bsd          => 'http://www.opensource.org/licenses/bsd-license.php',
-    gpl          => 'http://www.opensource.org/licenses/gpl-license.php',
-    mit          => 'http://opensource.org/licenses/mit-license.php',
-    mozilla      => 'http://opensource.org/licenses/mozilla1.1.php',
-    open_source  => undef,
-    unrestricted => undef,
-    restrictive  => undef,
-    unknown      => undef,
+    'perl'         => 'http://dev.perl.org/licenses/',
+    'gpl'          => 'http://www.opensource.org/licenses/gpl-license.php',
+    'apache'       => 'http://apache.org/licenses/LICENSE-2.0',
+    'artistic'     => 'http://opensource.org/licenses/artistic-license.php',
+    'artistic2'    => 'http://opensource.org/licenses/artistic-license-2.0.php',
+    'artistic-2.0' => 'http://opensource.org/licenses/artistic-license-2.0.php',
+    'lgpl'         => 'http://www.opensource.org/licenses/lgpl-license.phpt',
+    'bsd'          => 'http://www.opensource.org/licenses/bsd-license.php',
+    'gpl'          => 'http://www.opensource.org/licenses/gpl-license.php',
+    'mit'          => 'http://opensource.org/licenses/mit-license.php',
+    'mozilla'      => 'http://opensource.org/licenses/mozilla1.1.php',
+    'open_source'  => undef,
+    'unrestricted' => undef,
+    'restrictive'  => undef,
+    'unknown'      => undef,
 );
 
 sub license {
     my ($self,$key,$value) = @_;
     if(defined $value) {
         return 1    if($value && exists $licenses{$value});
+        return 2    if($value);
     } else {
         $value = '<undef>';
     }
@@ -649,7 +653,7 @@ sub _error {
     push @{$self->{errors}}, $mess;
 }
 
-q( NP: Apoptygma Beserk - "Welcome To Earth" );
+q( Currently Listening To: Gary Numan - "This Wreckage" from 'Scarred');
 
 __END__
 

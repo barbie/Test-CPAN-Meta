@@ -4,7 +4,7 @@ use warnings;
 use strict;
 
 use vars qw($VERSION);
-$VERSION = '0.07';
+$VERSION = '0.08';
 
 #----------------------------------------------------------------------------
 
@@ -97,17 +97,22 @@ sub import {
 
 Basic META.yml wrapper around meta_spec_ok.
 
+Returns a hash reference to the contents of the parsed META.yml
+
 =cut
 
 sub meta_yaml_ok {
     $Test->plan( tests => 2 );
-    meta_spec_ok(undef,undef,@_);
+    return meta_spec_ok(undef,undef,@_);
 }
 
 =item * meta_spec_ok($file, $version [,$msg])
 
 Validates the named file against the given specification version. Both $file
 and $version can be undefined.
+
+Returns a hash reference to the contents of the given file, after it has been
+parsed.
 
 =back
 
@@ -144,9 +149,11 @@ sub meta_spec_ok {
     } else {
         $Test->ok(1,$msg);
     }
+
+    return $yaml;
 }
 
-q( NP: IQ - "Dark Matter" );
+q( Currently Listening To: Joy Division - "Transmission" from 'Heart And Soul');
 
 __END__
 
