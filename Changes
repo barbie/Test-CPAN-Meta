@@ -1,5 +1,8 @@
 # Changes log for Test::CPAN::Meta
 
+0.09	17/03/2008
+	- it helps when you fix all the versioning too!
+
 0.08	17/03/2008
 	- fixed licensing list (adding Artistic2). (Bernhard Schmalhofer)
 	- value for license is mandatory, but the actual value could be any
