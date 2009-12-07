@@ -18,6 +18,7 @@ t/05metaspec.t
 t/90podtest.t
 t/91podcover.t
 t/94metatest.t
+t/95changedate.t
 t/samples/00-META.yml
 t/samples/01-META.yml
 t/samples/02-META.yml

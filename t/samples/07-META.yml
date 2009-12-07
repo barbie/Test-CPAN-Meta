@@ -38,16 +38,16 @@ meta-spec:
 generated_by: Hand 1.0
 
 optional_features:
-  - foo:
-      description:        test
-      requires_packages:  test
-      requires_os:        test
-      excludes_os:        test
-      requires:
-        Test::More:       0.47
-      recommends:
-        Test::More:       0.47
-      build_requires:
-        Test::More:       0.47
-      conflicts:
-        Test::More:       0.47
+  foo:
+    description:        test
+    requires_packages:  test
+    requires_os:        test
+    excludes_os:        test
+    requires:
+      Test::More:       0.47
+    recommends:
+      Test::More:       0.47
+    build_requires:
+      Test::More:       0.47
+    conflicts:
+      Test::More:       0.47

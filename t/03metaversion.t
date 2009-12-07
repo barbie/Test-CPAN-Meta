@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
 use strict;
 
-use Test::More  tests => 86;
+use Test::More  tests => 92;
 use Test::CPAN::Meta::Version;
 
 my $spec = Test::CPAN::Meta::Version->new(spec => '1.3');
@@ -18,6 +18,8 @@ is($spec->url('url','test://'),0);
 is($spec->url('url','test^example^com'),0);
 is($spec->url('url',''),0);
 is($spec->url('url',undef),0);
+
+is($spec->url('url','http://www.gnu.org/licenses/#GPL'),1,'valid URL: http://www.gnu.org/licenses/#GPL');
 
 is($spec->urlspec('spec','http://module-build.sourceforge.net/META-spec-v1.3.html'),1,'valid specification URL');
 is($spec->urlspec('spec','http://module-build.sourceforge.net/META-spec-v1.2.html'),0);
@@ -49,6 +51,8 @@ is($spec->exversion('exversion'),0);
 is($spec->version('version','0'),1,'valid basic version');
 is($spec->version('version','0.00'),1);
 is($spec->version('version','0.00_00'),1);
+is($spec->version('version','0.0.0'),1);
+is($spec->version('version','v0.0.0'),1);
 is($spec->version('version','<6'),1);
 is($spec->version('version','!4'),0);
 is($spec->version('version',''),0);
@@ -71,7 +75,10 @@ is($spec->license('license','blah'),2);
 is($spec->license('license',''),0);
 is($spec->license('license',undef),0);
 
-is($spec->resource('MailListing'),1,'valid resource');
+is($spec->resource('MailListing'),1,'valid resource - CamelCase');
+is($spec->resource('MAILListing'),1,'valid resource - Caps start');
+is($spec->resource('mailLISTing'),1,'valid resource - Caps middle');
+is($spec->resource('mailListing'),1,'valid resource - 1 cap middle');
 is($spec->resource('maillisting'),0);
 is($spec->resource(''),0);
 is($spec->resource(undef),0);
