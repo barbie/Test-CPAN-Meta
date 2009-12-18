@@ -4,7 +4,7 @@ use warnings;
 use strict;
 
 use vars qw($VERSION);
-$VERSION = '0.15';
+$VERSION = '0.16';
 
 #----------------------------------------------------------------------------
 
@@ -64,7 +64,7 @@ my $no_index_1_2 = {
     }
 };
 my $no_index_1_1 = {
-    'map'       => { ':key'     => { name => \&word, list => { value => \&string } },
+    'map'       => { ':key'     => { name => \&keyword, list => { value => \&string } },
     }
 };
 
@@ -92,7 +92,7 @@ my %definitions = (
 
   'optional_features'   => {
     'map'       => {
-        ':key'  => { name => \&word,
+        ':key'  => { name => \&identifier,
             'map'   => { description        => { value => \&string },
                          requires_packages  => { value => \&string },
                          requires_os        => { value => \&string },
@@ -128,7 +128,7 @@ my %definitions = (
 
   # additional user defined key/value pairs
   # note we can only validate the key name, as the structure is user defined
-  ':key'        => { name => \&word },
+  ':key'        => { name => \&keyword },
 },
 
 '1.3' => {
@@ -153,7 +153,7 @@ my %definitions = (
 
   'optional_features'   => {
     'map'       => {
-        ':key'  => { name => \&word,
+        ':key'  => { name => \&identifier,
             'map'   => { description        => { value => \&string },
                          requires_packages  => { value => \&string },
                          requires_os        => { value => \&string },
@@ -189,7 +189,7 @@ my %definitions = (
 
   # additional user defined key/value pairs
   # note we can only validate the key name, as the structure is user defined
-  ':key'        => { name => \&word },
+  ':key'        => { name => \&keyword },
 },
 
 # v1.2 is misleading, it seems to assume that a number of fields where created
@@ -223,7 +223,7 @@ my %definitions = (
 
   'optional_features'   => {
     'map'       => {
-        ':key'  => { name => \&word,
+        ':key'  => { name => \&identifier,
             'map'   => { description        => { value => \&string },
                          requires_packages  => { value => \&string },
                          requires_os        => { value => \&string },
@@ -254,7 +254,7 @@ my %definitions = (
 
   # additional user defined key/value pairs
   # note we can only validate the key name, as the structure is user defined
-  ':key'        => { name => \&word },
+  ':key'        => { name => \&keyword },
 },
 
 # note that the 1.1 spec doesn't specify optional or mandatory fields, what
@@ -279,7 +279,7 @@ my %definitions = (
 
   # additional user defined key/value pairs
   # note we can only validate the key name, as the structure is user defined
-  ':key'        => { name => \&word },
+  ':key'        => { name => \&keyword },
 },
 
 # note that the 1.0 spec doesn't specify optional or mandatory fields, what
@@ -301,7 +301,7 @@ my %definitions = (
 
   # additional user defined key/value pairs
   # note we can only validate the key name, as the structure is user defined
-  ':key'        => { name => \&word },
+  ':key'        => { name => \&keyword },
 },
 );
 
@@ -536,7 +536,7 @@ type, or 2 if a value is given but the license type is not a recommended one.
 Validates that the given key is in CamelCase, to indicate a user defined
 keyword.
 
-=item * word($self,$key,$value)
+=item * keyword($self,$key,$value)
 
 Validates that key is in an acceptable format for the META.yml specification,
 i.e. any in the character class [-_a-z]. 
@@ -545,6 +545,12 @@ For user defined keys, although not explicitly stated in the specifications
 (v1.0 - v1.4), the convention is to precede the key with a pattern matching 
 qr{\Ax_}i. Following this any character from the character class [-_a-zA-Z]
 can be used. This clarification has been added to v2.0 of the specification.
+
+=item * identifier($self,$key,$value)
+
+Validates that key is in an acceptable format for the META.yml specification,
+for an identifier, i.e. any that matches the regular expression
+qr/[a-z][a-z_]/i. 
 
 =item * module($self,$key,$value)
 
@@ -712,7 +718,7 @@ sub resource {
     return 0;
 }
 
-sub word {
+sub keyword {
     my ($self,$key) = @_;
     if(defined $key) {
         return 1    if($key && $key =~ /^([-_a-z]+)$/);     # spec defined
@@ -721,6 +727,17 @@ sub word {
         $key = '<undef>';
     }
     $self->_error( "Key '$key' is not a legal keyword." );
+    return 0;
+}
+
+sub identifier {
+    my ($self,$key) = @_;
+    if(defined $key) {
+        return 1    if($key && $key =~ /^([a-z][_a-z]+)$/i);    # spec 2.0 defined
+    } else {
+        $key = '<undef>';
+    }
+    $self->_error( "Key '$key' is not a legal identifier." );
     return 0;
 }
 

@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
 use strict;
 
-use Test::More  tests => 92;
+use Test::More  tests => 108;
 use Test::CPAN::Meta::Version;
 
 my $spec = Test::CPAN::Meta::Version->new(spec => '1.3');
@@ -83,12 +83,15 @@ is($spec->resource('maillisting'),0);
 is($spec->resource(''),0);
 is($spec->resource(undef),0);
 
-is($spec->word('test'),1,'valid word');
-is($spec->word('test-test'),1);
-is($spec->word('test_test'),1);
-is($spec->word('test:'),0);
-is($spec->word(''),0);
-is($spec->word(undef),0);
+is($spec->keyword($_),1,"valid keyword $_")     for(qw(test X_TEST x_test test-test test_test));
+is($spec->keyword($_),0,"invalid keyword $_")   for(qw(X-TEST Test TEST test:));
+is($spec->keyword(''),0,'invalid keyword <empty string>');
+is($spec->keyword(undef),0,'invalid keyword <undef>');
+
+is($spec->identifier($_),1,"valid identifier $_")   for(qw(test Test TEST X_TEST x_test test_test));
+is($spec->identifier($_),0,"invalid identifier $_") for(qw(X-TEST test-test test:));
+is($spec->identifier(''),0,'invalid identifier <empty string>');
+is($spec->identifier(undef),0,'invalid identifier <undef>');
 
 is($spec->module('Test'),1,'valid module name');
 is($spec->module('Test::CPAN::Meta'),1);
