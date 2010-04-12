@@ -1,5 +1,9 @@
 # Changes log for Test::CPAN::Meta
 
+0.17    12/04/2010
+	- fixed qr// delimiters due to issues with the NOT SIGN symbol 
+	  (suggested by Ricardo Signes & David Golden).
+
 0.16    18/12/2009
 	- renamed word() to keyword().
 	- added identifier() validation.
