@@ -13,7 +13,7 @@ is($spec->header('header',undef),0);
 
 is($spec->url('url','http://module-build.sourceforge.net/META-spec-v1.3.html'),1,'valid URL');
 is($spec->url('url','http://'),0);
-is($spec->url('url','test://module-build.sourceforge.net/META-spec-v1.3.html'),0);
+is($spec->url('url','://module-build.sourceforge.net/META-spec-v1.3.html'),0);
 is($spec->url('url','test://'),0);
 is($spec->url('url','test^example^com'),0);
 is($spec->url('url',''),0);

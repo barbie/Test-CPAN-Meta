@@ -4,7 +4,7 @@ use warnings;
 use strict;
 
 use vars qw($VERSION);
-$VERSION = '0.17';
+$VERSION = '0.19';
 
 #----------------------------------------------------------------------------
 
@@ -53,6 +53,8 @@ standard distribution uploaded to CPAN, meets the specifications that are
 slowly being introduced to module uploads, via the use of package makers and
 installers such as L<ExtUtils::MakeMaker>, L<Module::Build> and
 L<Module::Install>.
+
+See L<CPAN::Meta> for further details of the CPAN Meta Specification.
 
 =head1 ABSTRACT
 
@@ -164,13 +166,13 @@ __END__
 There are currently 3 distributions to test META files:
 
   Test-CPAN-Meta
-  Test-JSON-Meta
-  Test-YAML-Meta
+  Test-CPAN-Meta-JSON
+  Test-CPAN-Meta-YAML
 
 All three have slightly different requirements and are intended to be used in
 slightly different environments. 
 
-Test-YAML-Meta requires a YAML parser, and currently looks for the YAML or 
+Test-CPAN-Meta-YAML requires a YAML parser, and currently looks for the YAML or 
 YAML::Syck modules. This is the original variant of the 3 and was intended to
 provide a more complete YAML validation of a META.yml.
 
@@ -178,7 +180,7 @@ Test-CPAN-Meta requires the Parse::CPAN::Meta module, which is now part of Perl
 Core as of perl-5.10.1. This version is intended to be used by those only 
 wishing to rely on core modules to test their META.yml files.
 
-Test-JSON-Meta is the most recent addition to the family, and is specifically
+Test-CPAN-Meta-JSON is the most recent addition to the family, and is specifically
 aimed at those distributions that use a META.json Meta file. The distribution
 requires the JSON module to parse the Meta file.
 
@@ -187,7 +189,7 @@ requires the JSON module to parse the Meta file.
 There are no known bugs at the time of this release. However, if you spot a
 bug or are experiencing difficulties that are not explained within the POD
 documentation, please send an email to barbie@cpan.org or submit a bug to the
-RT system (http://rt.cpan.org/Public/Dist/Display.html?Name=Test-YAML-Meta).
+RT system (http://rt.cpan.org/Public/Dist/Display.html?Name=Test-CPAN-Meta).
 However, it would help greatly if you are able to pinpoint problems or even
 supply a patch.
 
@@ -213,7 +215,7 @@ for Miss Barbell Productions, L<http://www.missbarbell.co.uk>
 
 =head1 COPYRIGHT AND LICENSE
 
-  Copyright (C) 2007-2010 Barbie for Miss Barbell Productions
+  Copyright (C) 2007-2012 Barbie for Miss Barbell Productions
 
   This module is free software; you can redistribute it and/or
   modify it under the same terms as Perl itself.

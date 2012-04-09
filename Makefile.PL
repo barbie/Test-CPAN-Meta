@@ -10,6 +10,6 @@ WriteMakefile(
 	NO_META			=> 1,
 
     ($] >= 5.005 ?    ## Add these new keywords supported since 5.005
-      (ABSTRACT	=> 'CPAN META.yml testing module',
+      (ABSTRACT	=> 'A test module to validate a CPAN META.yml file',
        AUTHOR	=> 'Barbie <barbie@cpan.org>') : ()),
 );

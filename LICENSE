@@ -1,10 +1,11 @@
-LICENSE FOR Test-YAML-Meta
+LICENSE FOR Test-CPAN-Meta
 
-Copyright © 2007 Barbie for Miss Barbell Productions.
+This software is copyright © 2007-2011 Barbie for Miss Barbell Productions.
 
 This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
+it under the terms of the Artistic License 2.0.
 
-The full text of the licenses can be found in the Artistic file included with
-this distribution, or in perlartistic file available with your Perl 
-installation.
+The full text of the license can be found at the following URL:
+
+http://www.perlfoundation.org/artistic_license_2_0
+

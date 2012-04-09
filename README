@@ -10,9 +10,11 @@ standard distribution uploaded to CPAN, meets the specifications that are
 slowly being introduced to module uploads, via the use of package makers and
 installers such as ExtUtils::MakeMaker, Module::Build and Module::Install.
 
-Current META.yml Specification, 1.4, was finally approved on 23 June 2008.
+Current CPAN META Specification, 2.0, was finally approved in April 2010, 
+which forms the basis for the contents of a META.json file. The full 
+specification is now included with the CPAN-Meta distribution.
 
-http://www.nntp.perl.org/group/perl.module.build/2008/06/msg1360.html
+http://search.cpan.org/perldoc?CPAN::Meta
 
 DEPENDENCIES
 
@@ -77,11 +79,7 @@ for Miss Barbell Productions http://www.missbarbell.co.uk.
 
 COPYRIGHT AND LICENSE
 
-  Copyright (C) 2007,2008 Barbie for Miss Barbell Productions.
+  Copyright (C) 2007-2011 Barbie for Miss Barbell Productions
 
-  This module is free software; you can redistribute it and/or 
-  modify it under the same terms as Perl itself.
-
-The full text of the licenses can be found in the Artistic file included with
-this distribution, or in perlartistic file available with your Perl 
-installation.
+  This module is free software; you can redistribute it and/or
+  modify it under the Artistic Licence v2.
