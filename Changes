@@ -1,8 +1,9 @@
 # Changes log for Test::CPAN::Meta
 
-0.19    09/04/2012
+0.19    13/04/2012
 	- RT#74317: imported url validation from CPAN::Meta (Alex Hartmaier).
 	- RT#66692: updated license type (Paul Howarth).
+	- updates to examples.
 
 0.18    13/02/2011
 	- documentation clean up.
