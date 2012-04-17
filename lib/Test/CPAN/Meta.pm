@@ -4,7 +4,7 @@ use warnings;
 use strict;
 
 use vars qw($VERSION);
-$VERSION = '0.19';
+$VERSION = '0.20';
 
 #----------------------------------------------------------------------------
 
@@ -193,7 +193,7 @@ RT system (http://rt.cpan.org/Public/Dist/Display.html?Name=Test-CPAN-Meta).
 However, it would help greatly if you are able to pinpoint problems or even
 supply a patch.
 
-Fixes are dependant upon their severity and my availablity. Should a fix not
+Fixes are dependant upon their severity and my availability. Should a fix not
 be forthcoming, please feel free to (politely) remind me.
 
 =head1 SEE ALSO
