@@ -1,5 +1,9 @@
 # Changes log for Test::CPAN::Meta
 
+0.21	19/04/2012
+	- RT#76609: further spelling fix. (Florian Schlichting).
+	- removed DSLIP info.
+
 0.20	17/04/2012
 	- RT#76609: spelling fix. (Florian Schlichting & Gregor Herrmann).
 
