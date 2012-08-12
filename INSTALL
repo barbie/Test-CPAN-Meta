@@ -11,13 +11,13 @@ The easiest way to install is via CPAN or CPANPLUS:
 CPAN:
 
     % perl -MCPAN -e shell                    [as root]
-    > install Test-YAML-Meta
+    > install Test-CPAN-Meta
     > quit
 
 CPANPLUS:
 
     % cpanp
-    > i Test-YAML-Meta
+    > i Test-CPAN-Meta
     > q
 
 See your local 'perldoc CPAN' or 'perldoc CPANPLUS' for
@@ -27,29 +27,29 @@ instructions on setting up and configuring CPAN or CPANPLUS.
 OBTAINING THE MODULE
 --------------------
 
-The latest release version of Test-YAML-Meta can be downloaded
+The latest release version of Test-CPAN-Meta can be downloaded
 from any CPAN site:
 
     http://www.cpan.org/modules/by-authors/id/B/BA/BARBIE/
-    http://search.cpan.org/dist/Test-YAML-Meta/
+    http://search.cpan.org/dist/Test-CPAN-Meta/
 
 Phrasebook is distributed as a gzipped tar archive file:
 
-    Test-YAML-Meta-<version>.tar.gz
+    Test-CPAN-Meta-<version>.tar.gz
 
 where <version> represents the current version number, e.g. 0.01.
 
 To install the module, unpack the distribution archive to
 create an installation directory.  Something like this:
 
-    tar zxf Test-YAML-Meta-0.01.tar.gz
+    tar zxf Test-CPAN-Meta-0.01.tar.gz
 or
-    gunzip Test-YAML-Meta-0.01.tar.gz
-    tar xf Test-YAML-Meta-0.01.tar
+    gunzip Test-CPAN-Meta-0.01.tar.gz
+    tar xf Test-CPAN-Meta-0.01.tar
 
 You can then 'cd' into the directory created,
 
-    cd Test-YAML-Meta-0.01
+    cd Test-CPAN-Meta-0.01
 
 
 INSTALLING MANUALLY
@@ -88,7 +88,7 @@ information;
     + result of `perl -V'
     + output from 'make test' - ideally do 'make test TEST_VERBOSE=1 >& errs'
 
-Send those to bug-Test-YAML-Meta@rt.cpan.org and I'll get back to you as
+Send those to bug-Test-CPAN-Meta@rt.cpan.org and I'll get back to you as
 soon as I'm able.
 
 If it worked, then become root and type:
@@ -102,7 +102,7 @@ If you have a copy of cpantest installed, type:
     % cpantest -g pass -nc -p `basename \`pwd\`` -auto
 
 Or:
-    % cpantest -g pass -nc -p Test-YAML-Meta-0.01 -auto
+    % cpantest -g pass -nc -p Test-CPAN-Meta-0.01 -auto
 
 That will tell both me and other potential users that the module
 built correctly on your machine.

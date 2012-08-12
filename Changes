@@ -1,5 +1,14 @@
 # Changes log for Test::CPAN::Meta
 
+0.22	12/08/2012
+	- updated INSTALL instructions.
+        - added minimum perl version (5.006).
+        - reworked Makefile.PL for clarity.
+	- implemented Perl::Critic suggestions.
+	- added meta_yaml_ok test and example.
+	- several Version.pm updates, including new() parameter name change:
+	  'yaml' is now 'data'.
+
 0.21	19/04/2012
 	- RT#76609: further spelling fix. (Florian Schlichting).
 	- removed DSLIP info.

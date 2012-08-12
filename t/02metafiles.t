@@ -29,7 +29,7 @@ my @tests = (
 );
 
 for my $test (@tests) {
-    my ($yaml) = eval { Parse::CPAN::Meta::LoadFile($test->{file}) };
+    my ($data) = eval { Parse::CPAN::Meta::LoadFile($test->{file}) };
 
     if($@) {
         ok(0,"Cannot load file - $test->{file}");
@@ -37,7 +37,7 @@ for my $test (@tests) {
         next;
     }
 
-    my $spec = Test::CPAN::Meta::Version->new(spec => $vers, yaml => $yaml);
+    my $spec = Test::CPAN::Meta::Version->new(spec => $vers, data => $data);
 
     my $result = $spec->parse();
     my @errors = $spec->errors();
@@ -52,14 +52,14 @@ for my $test (@tests) {
 }
 
 for my $test (@tests) {
-    my ($yaml) = eval { Parse::CPAN::Meta::LoadFile($test->{file}) };
+    my ($data) = eval { Parse::CPAN::Meta::LoadFile($test->{file}) };
     if($@) {
         ok(0,"Cannot load file - $test->{file}");
         ok(0,"Cannot load file - $test->{file}");
         next;
     }
 
-    my $spec = Test::CPAN::Meta::Version->new(yaml => $yaml);
+    my $spec = Test::CPAN::Meta::Version->new(data => $data);
 
     my $result = $spec->parse();
     my @errors = $spec->errors();

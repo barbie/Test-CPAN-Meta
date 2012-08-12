@@ -4,13 +4,13 @@ use warnings;
 use strict;
 
 use vars qw($VERSION);
-$VERSION = '0.21';
+$VERSION = '0.22';
 
 #----------------------------------------------------------------------------
 
 =head1 NAME
 
-Test::CPAN::Meta::Version - Validation of META.yml specification elements.
+Test::CPAN::Meta::Version - Validate CPAN META data against the specification
 
 =head1 SYNOPSIS
 
@@ -37,7 +37,7 @@ Validation of META.yml data against the CPAN Meta Specification.
 #----------------------------------------------------------------------------
 
 #############################################################################
-#Specification Definitions													#
+#Specification Definitions                                                  #
 #############################################################################
 
 my %known_specs = (
@@ -130,7 +130,7 @@ my %definitions = (
 
   # additional user defined key/value pairs
   # note we can only validate the key name, as the structure is user defined
-  ':key'        => { name => \&keyword },
+  ':key'        => { name => \&keyword, value => \&anything },
 },
 
 '1.3' => {
@@ -191,7 +191,7 @@ my %definitions = (
 
   # additional user defined key/value pairs
   # note we can only validate the key name, as the structure is user defined
-  ':key'        => { name => \&keyword },
+  ':key'        => { name => \&keyword, value => \&anything },
 },
 
 # v1.2 is misleading, it seems to assume that a number of fields where created
@@ -256,7 +256,7 @@ my %definitions = (
 
   # additional user defined key/value pairs
   # note we can only validate the key name, as the structure is user defined
-  ':key'        => { name => \&keyword },
+  ':key'        => { name => \&keyword, value => \&anything },
 },
 
 # note that the 1.1 spec doesn't specify optional or mandatory fields, what
@@ -281,7 +281,7 @@ my %definitions = (
 
   # additional user defined key/value pairs
   # note we can only validate the key name, as the structure is user defined
-  ':key'        => { name => \&keyword },
+  ':key'        => { name => \&keyword, value => \&anything },
 },
 
 # note that the 1.0 spec doesn't specify optional or mandatory fields, what
@@ -303,24 +303,24 @@ my %definitions = (
 
   # additional user defined key/value pairs
   # note we can only validate the key name, as the structure is user defined
-  ':key'        => { name => \&keyword },
+  ':key'        => { name => \&keyword, value => \&anything },
 },
 );
 
 #############################################################################
-#Code               														#
+#Code                                                                       #
 #############################################################################
 
 =head1 CLASS CONSTRUCTOR
 
 =over
 
-=item * new( yaml => $yaml [, spec => $version] )
+=item * new( data => $data [, spec => $version] )
 
-The constructor must be passed a valid YAML data structure.
+The constructor must be passed a valid data structure.
 
 Optionally you may also provide a specification version. This version is then
-use to ensure that the given YAML data structure meets the respective
+use to ensure that the given data structure meets the respective
 specification definition. If no version is provided the module will attempt to
 deduce the appropriate specification version from the data structure itself.
 
@@ -334,7 +334,7 @@ sub new {
     # create an attributes hash
     my $atts = {
         'spec' => $hash{spec},
-        'yaml' => $hash{yaml},
+        'data' => $hash{data},
     };
 
     # create the object
@@ -349,7 +349,7 @@ sub new {
 
 =item * parse()
 
-Using the YAML data structure provided with the constructure, attempts to
+Using the given data structure provided with the constructor, attempts to
 parse and validate according to the appropriate specification definition.
 
 Returns 1 if any errors found, otherwise returns 0.
@@ -364,10 +364,10 @@ Returns a list of the errors found during parsing.
 
 sub parse {
     my $self = shift;
-    my $data = $self->{yaml};
+    my $data = $self->{data};
 
     unless($self->{spec}) {
-        $self->{spec} = $data->{'meta-spec'} && $data->{'meta-spec'}->{'version'} ? $data->{'meta-spec'}->{'version'} : '1.0';
+        $self->{spec} = $data->{'meta-spec'} && $data->{'meta-spec'}{'version'} ? $data->{'meta-spec'}{'version'} : '1.0';
     }
 
     $self->check_map($definitions{$self->{spec}},$data);
@@ -386,12 +386,12 @@ sub errors {
 
 =item * check_map($spec,$data)
 
-Checks whether a map (or hash) part of the YAML data structure conforms to the
+Checks whether a map (or hash) part of the data structure conforms to the
 appropriate specification definition.
 
 =item * check_list($spec,$data)
 
-Checks whether a list (or array) part of the YAML data structure conforms to
+Checks whether a list (or array) part of the data structure conforms to
 the appropriate specification definition.
 
 =back
@@ -407,7 +407,7 @@ sub check_map {
     }
 
     if(ref($data) ne 'HASH') {
-        $self->_error( "Expected a map structure from YAML string or file." );
+        $self->_error( "Expected a map structure from data string or file." );
         return;
     }
 
@@ -439,7 +439,6 @@ sub check_map {
             } elsif($spec->{':key'}{'list'}) {
                 $self->check_list($spec->{':key'}{'list'},$data->{$key});
             }
-
 
         } else {
             $self->_error( "Unknown key, '$key', found in map structure" );
@@ -541,10 +540,10 @@ keyword.
 =item * keyword($self,$key,$value)
 
 Validates that key is in an acceptable format for the META.yml specification,
-i.e. any in the character class [-_a-z]. 
+i.e. any in the character class [-_a-z].
 
-For user defined keys, although not explicitly stated in the specifications 
-(v1.0 - v1.4), the convention is to precede the key with a pattern matching 
+For user defined keys, although not explicitly stated in the specifications
+(v1.0 - v1.4), the convention is to precede the key with a pattern matching
 qr{\Ax_}i. Following this any character from the character class [-_a-zA-Z]
 can be used. This clarification has been added to v2.0 of the specification.
 
@@ -552,12 +551,17 @@ can be used. This clarification has been added to v2.0 of the specification.
 
 Validates that key is in an acceptable format for the META.yml specification,
 for an identifier, i.e. any that matches the regular expression
-qr/[a-z][a-z_]/i. 
+qr/[a-z][a-z_]/i.
 
 =item * module($self,$key,$value)
 
 Validates that a given key is in an acceptable module name format, e.g.
 'Test::CPAN::Meta::Version'.
+
+=item * anything($self,$key,$value)
+
+Usually reserved for user defined structures, allowing them to be considered
+valid without a need for a specification definition for the structure.
 
 =back
 
@@ -578,20 +582,21 @@ sub _uri_split {
 
 sub url {
     my ($self,$key,$value) = @_;
-    if(defined $value) {
+    if($value) {
         my ($scheme, $auth, $path, $query, $frag) = _uri_split($value);
 
-        unless ( defined $scheme && length $scheme ) {
+        unless ( $scheme ) {
             $self->_error( "'$value' for '$key' does not have a URL scheme" );
             return 0;
         }
-        unless ( defined $auth && length $auth ) {
+        unless ( $auth ) {
             $self->_error(  "'$value' for '$key' does not have a URL authority" );
             return 0;
         }
         return 1;
+    } else {
+        $value = '<undef>';
     }
-    $value ||= '';
     $self->_error( "'$value' for '$key' is not a valid URL." );
     return 0;
 }
@@ -701,7 +706,7 @@ sub license {
 sub resource {
     my ($self,$key) = @_;
     if(defined $key) {
-        # a valid user defined key should be alphabetic 
+        # a valid user defined key should be alphabetic
         # and contain at least one capital case letter.
         return 1    if($key && $key =~ /^[a-z]+$/i && $key =~ /[A-Z]/);
     } else {
@@ -714,8 +719,8 @@ sub resource {
 sub keyword {
     my ($self,$key) = @_;
     if(defined $key) {
-        return 1    if($key && $key =~ /^([-_a-z]+)$/);     # spec defined
-        return 1    if($key && $key =~ /^x_([-_a-z]+)$/i);  # user defined
+        return 1    if($key && $key =~ /^([a-z][-_a-z]*)$/);    # spec defined
+        return 1    if($key && $key =~ /^x_([a-z][-_a-z]*)$/i); # user defined
     } else {
         $key = '<undef>';
     }
@@ -744,6 +749,8 @@ sub module {
     $self->_error( "Key '$key' is not a legal module name." );
     return 0;
 }
+
+sub anything { return 1 }
 
 sub _error {
     my $self = shift;

@@ -20,18 +20,18 @@ DEPENDENCIES
 
 The distribution requires the following modules:
 
-  Parse::CPAN::Meta   >= 0.02
-  Test::Builder       >= 0
+  Parse::CPAN::Meta     >= 0.02
+  Test::Builder         >= 0
 
 For testing purposes, the following modules are required:
 
-  Test::More          >= 0.70
+  Test::More            >= 0.70
 
 For testing purposes, the following modules are desireable, but not essential:
 
-  Test::Pod           >= 1.00
-  Test::Pod::Coverage >= 0.08
-  Pod::Coverage
+  Test::Pod             >= 1.00
+  Test::Pod::Coverage   >= 0.08
+  Pod::Coverage         >= 0
 
 INSTALLATION
 
