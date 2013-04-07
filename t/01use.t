@@ -7,4 +7,3 @@ BEGIN {
 	use_ok( 'Test::CPAN::Meta' );
 	use_ok( 'Test::CPAN::Meta::Version' );
 }
-

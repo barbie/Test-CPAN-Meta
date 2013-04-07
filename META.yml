@@ -1,7 +1,7 @@
 --- #YAML:1.0
 name:                     Test-CPAN-Meta
 version:                  0.22
-abstract:                 Validate your CPAN META.yml file
+abstract:                 Validate your CPAN META.yml files
 author:
   - Barbie <barbie@cpan.org>
 

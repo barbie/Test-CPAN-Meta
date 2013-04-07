@@ -44,4 +44,3 @@ test_fail(2);
 test_err('#   ERR: Unknown META.yml specification, cannot validate. [Validation: 0.99]');
 meta_spec_ok($testfile,'0.99','bad spec version');
 test_test("$testfile with bad spec version 0.99");
-
