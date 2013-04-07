@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:                     Test-CPAN-Meta
-version:                  0.22
+version:                  0.23
 abstract:                 Validate your CPAN META.yml files
 author:
   - Barbie <barbie@cpan.org>
@@ -24,18 +24,19 @@ build_requires:
 provides:
   Test::CPAN::Meta:
     file:     lib/Test/CPAN/Meta.pm
-    version:  0.22
+    version:  0.23
   Test::CPAN::Meta::Version:
     file:     lib/Test/CPAN/Meta/Version.pm
-    version:  0.22
+    version:  0.23
 no_index:
   directory:
     - t
     - examples
 
 resources:
-  license:    http://dev.perl.org/licenses/
+  license:    http://www.perlfoundation.org/artistic_license_2_0
   bugtracker: http://rt.cpan.org/Public/Dist/Display.html?Name=Test-CPAN-Meta
+  repository: http://github.com/barbie/Test-CPAN-Meta
 
 meta-spec:
    version:   1.4
