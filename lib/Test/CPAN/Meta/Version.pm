@@ -784,7 +784,7 @@ for Miss Barbell Productions, L<http://www.missbarbell.co.uk>
 
 =head1 COPYRIGHT AND LICENSE
 
-  Copyright (C) 2007-2014 Barbie for Miss Barbell Productions
+  Copyright (C) 2007-2015 Barbie for Miss Barbell Productions
 
   This distribution is free software; you can redistribute it and/or
   modify it under the Artistic Licence v2.
