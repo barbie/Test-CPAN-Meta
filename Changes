@@ -1,8 +1,9 @@
-Changes log for Test-CPAN-Meta
-==============================
+Revision history for Test-CPAN-Meta
+===================================
 
         - extended META test suite.
         - added META.json and tests.
+        - documentation updates
 
 0.23    2013-04-07
         - change file dates changed to meet W3CDTF standards.
