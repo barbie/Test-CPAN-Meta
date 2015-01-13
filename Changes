@@ -1,6 +1,7 @@
 Revision history for Test-CPAN-Meta
 ===================================
 
+0.24    2015-01-13
         - extended META test suite.
         - added META.json and tests.
         - documentation updates
