@@ -1,6 +1,7 @@
 Revision history for Test-CPAN-Meta
 ===================================
 
+0.25    2015-05-06
         - POD fixes (by Olivier Mengué (DOLMEN)).
         - removed Test::CPAN::Meta from the recommends list, as CPAN.pm tries
           to install it first. (RT#104023 Steve Hay (SHAY)).
