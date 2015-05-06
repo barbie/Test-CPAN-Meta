@@ -36,7 +36,6 @@
                 "Test::Builder": "0"
             },
             "recommends": {
-                "Test::CPAN::Meta": "0.13",
                 "Test::CPAN::Meta::JSON": "0",
                 "Test::More": "0.70",
                 "Test::Pod": "1.00",

@@ -1,6 +1,10 @@
 Revision history for Test-CPAN-Meta
 ===================================
 
+        - POD fixes (by Olivier Mengué (DOLMEN)).
+        - removed Test::CPAN::Meta from the recommends list, as CPAN.pm tries
+          to install it first. (RT#104023 Steve Hay (SHAY)).
+
 0.24    2015-01-13
         - extended META test suite.
         - added META.json and tests.
